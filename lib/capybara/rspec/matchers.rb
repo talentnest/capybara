@@ -123,6 +123,12 @@ module Capybara
       end
     end
 
+    def have_text(text)
+      HaveMatcher.new(:text, text.to_s) do |page, matcher|
+        %(expected there to be text #{matcher.locator.inspect} in #{page.text.inspect})
+      end
+    end
+
     def have_link(locator, options={})
       HaveMatcher.new(:link, locator, options)
     end
